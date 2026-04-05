@@ -81,10 +81,15 @@ section { padding: 5rem 1.5rem; }
 
 /* ===== Hero ===== */
 .hero {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   text-align: center; padding-top: 64px;
-  background: linear-gradient(135deg, rgba(242,153,74,.7), rgba(242,201,76,.5)), url('hero.png') center/cover no-repeat;
-  color: #fff;
+  background: #FFFAF5;
+}
+.hero .container {
+  max-width: 900px; padding: 2rem;
+}
+.hero img {
+  width: 100%; height: auto; border-radius: 12px;
 }
 .hero h1 { font-size: 2.6rem; margin-bottom: 1rem; line-height: 1.3; }
 .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; opacity: .95; }
@@ -240,7 +245,9 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
 
 <!-- ===== Hero ===== -->
 <section class="hero" id="hero">
-  <div class="container"></div>
+  <div class="container">
+    <img src="hero.png" alt="社團法人璨陽輔助科技協會 — 科技有愛 陽光同行">
+  </div>
 </section>
 
 <!-- ===== About ===== -->
