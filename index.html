@@ -153,7 +153,8 @@ section { padding: 5rem 1.5rem; }
   background: #fff; border-radius: 16px; padding: 2.5rem 2rem; text-align: center;
   box-shadow: 0 4px 20px rgba(0,0,0,.06);
 }
-.support-card .icon { font-size: 2.4rem; margin-bottom: 1rem; }
+.support-card .icon { margin-bottom: 1rem; }
+.support-card .icon img { width: 64px; height: 64px; object-fit: contain; margin: 0 auto; }
 .support-card h3 { font-size: 1.15rem; margin-bottom: .8rem; color: #2D3436; }
 .support-card p { font-size: .9rem; color: #636e72; margin-bottom: 1.5rem; }
 
@@ -163,8 +164,8 @@ section { padding: 5rem 1.5rem; }
 .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
 .contact-item .ci-icon {
   width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, #F2994A, #F2C94C);
   display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
   color: #fff; font-size: 1.2rem; flex-shrink: 0;
 }
 .contact-item h4 { font-size: 1rem; margin-bottom: .2rem; }
@@ -349,7 +350,7 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
     <p style="max-width:800px; margin:1.5rem auto; text-align:center; font-size:.95rem; color:#666;">理事長&ensp;林明昌&ensp;致謝</p>
     <div class="support-grid" style="grid-template-columns:1fr; max-width:500px; margin:2rem auto 0;">
       <div class="support-card">
-        <div class="icon" aria-hidden="true">&#127974;</div>
+        <div class="icon"><img src="icon-donate.png" alt="匯款"></div>
         <h3>匯款帳號</h3>
         <p style="text-align:left; line-height:2;">銀行名稱：玉山銀行 桃園分行<br>銀行代號：808<br>銀行帳號：0185940028777</p>
       </div>
@@ -365,21 +366,21 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
     <div class="contact-wrapper">
       <div class="contact-info">
         <div class="contact-item">
-          <div class="ci-icon" aria-hidden="true">&#128203;</div>
+          <div class="ci-icon"><img src="icon-cert.png" alt="登記資訊" style="width:48px;height:48px;object-fit:contain;"></div>
           <div>
             <h4>登記資訊</h4>
             <p>內政部登記證號：台內團字第10900393302號<br>桃園地法院法人登記：第34冊第39頁000044號<br>統一編號：87518381</p>
           </div>
         </div>
         <div class="contact-item">
-          <div class="ci-icon" aria-hidden="true">&#128205;</div>
+          <div class="ci-icon"><img src="icon-location.png" alt="會址" style="width:48px;height:48px;object-fit:contain;"></div>
           <div>
             <h4>會址</h4>
             <p>桃園市中壢區內定里內定二十街73巷76號</p>
           </div>
         </div>
         <div class="contact-item">
-          <div class="ci-icon" aria-hidden="true">&#128266;</div>
+          <div class="ci-icon"><img src="icon-fb.png" alt="Facebook" style="width:48px;height:48px;object-fit:contain;"></div>
           <div>
             <h4>更多資訊</h4>
             <p>FB 搜尋「<a href="https://www.facebook.com/people/%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E7%92%A8%E9%99%BD%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83/100064873473029/" target="_blank" rel="noopener" style="color:#F2994A; text-decoration:underline;">社團法人璨陽輔助科技協會</a>」</p>
