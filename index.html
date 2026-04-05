@@ -1,11 +1,472 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sunshine-at</title>
+<title>社團法人璨陽輔助科技協會 | SunShine-AT</title>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+  color: #2D3436;
+  background: #FFFAF5;
+  line-height: 1.8;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: rgba(255,250,245,.95);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 64px;
+}
+.navbar .brand {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: 1.15rem; font-weight: 700; color: #F2994A;
+  white-space: nowrap;
+}
+.navbar .brand .logo-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #F2994A, #F2C94C);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.2rem; flex-shrink: 0;
+}
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a {
+  font-size: .9rem; font-weight: 500; color: #2D3436;
+  padding: .3rem 0; position: relative; transition: color .3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 0; height: 2px; background: #F2994A; transition: width .3s;
+}
+.nav-links a:hover, .nav-links a:focus { color: #F2994A; }
+.nav-links a:hover::after, .nav-links a:focus::after { width: 100%; }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 26px; height: 3px; background: #2D3436; border-radius: 2px; transition: .3s; }
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 64px; right: 0; width: 220px; height: calc(100vh - 64px);
+    background: #FFFAF5; flex-direction: column; padding: 2rem 1.5rem; gap: 1.2rem;
+    box-shadow: -4px 0 12px rgba(0,0,0,.1);
+    transform: translateX(100%); transition: transform .3s;
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links a { font-size: 1rem; }
+}
+
+/* ===== Section helpers ===== */
+section { padding: 5rem 1.5rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-title {
+  text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: .6rem; color: #2D3436;
+}
+.section-subtitle {
+  text-align: center; font-size: 1rem; color: #636e72; margin-bottom: 3rem;
+}
+.bg-alt { background: #F7F7F7; }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding-top: 64px;
+  background: linear-gradient(135deg, #F2994A 0%, #F2C94C 100%);
+  color: #fff;
+}
+.hero h1 { font-size: 2.6rem; margin-bottom: 1rem; line-height: 1.3; }
+.hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; opacity: .95; }
+.btn {
+  display: inline-block; padding: .75rem 2rem; border-radius: 50px; font-weight: 600;
+  font-size: 1rem; cursor: pointer; transition: .3s; border: none;
+}
+.btn-white { background: #fff; color: #F2994A; }
+.btn-white:hover { background: #2D3436; color: #fff; }
+.btn-primary { background: #F2994A; color: #fff; }
+.btn-primary:hover { background: #e07e2a; }
+.btn-outline {
+  background: transparent; color: #F2994A; border: 2px solid #F2994A;
+}
+.btn-outline:hover { background: #F2994A; color: #fff; }
+
+/* ===== About ===== */
+.about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.about-card {
+  background: #fff; border-radius: 16px; padding: 2rem; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+.about-card .icon { font-size: 2.4rem; margin-bottom: 1rem; }
+.about-card h3 { font-size: 1.2rem; margin-bottom: .8rem; color: #F2994A; }
+.about-card p { font-size: .92rem; color: #636e72; }
+
+/* ===== Events ===== */
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.event-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06); transition: transform .3s;
+}
+.event-card:hover { transform: translateY(-4px); }
+.event-card .date-bar {
+  background: linear-gradient(135deg, #F2994A, #F2C94C);
+  color: #fff; padding: .6rem 1.2rem; font-weight: 700; font-size: .9rem;
+}
+.event-card .card-body { padding: 1.5rem; }
+.event-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+.event-card p { font-size: .88rem; color: #636e72; }
+
+/* ===== Works ===== */
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.work-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06); transition: transform .3s;
+}
+.work-card:hover { transform: translateY(-4px); }
+.work-card .thumb {
+  height: 180px; background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; color: #fff;
+}
+.work-card .card-body { padding: 1.5rem; }
+.work-card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+.work-card p { font-size: .88rem; color: #636e72; }
+
+/* ===== Support ===== */
+.support-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.support-card {
+  background: #fff; border-radius: 16px; padding: 2.5rem 2rem; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+.support-card .icon { font-size: 2.4rem; margin-bottom: 1rem; }
+.support-card h3 { font-size: 1.15rem; margin-bottom: .8rem; color: #2D3436; }
+.support-card p { font-size: .9rem; color: #636e72; margin-bottom: 1.5rem; }
+
+/* ===== Contact ===== */
+.contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
+.contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+.contact-item .ci-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: linear-gradient(135deg, #F2994A, #F2C94C);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.2rem; flex-shrink: 0;
+}
+.contact-item h4 { font-size: 1rem; margin-bottom: .2rem; }
+.contact-item p { font-size: .9rem; color: #636e72; }
+.contact-form {
+  background: #fff; border-radius: 16px; padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+.contact-form label { display: block; font-weight: 600; margin-bottom: .3rem; font-size: .92rem; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: .7rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px;
+  font-size: .95rem; font-family: inherit; margin-bottom: 1.2rem; transition: border .3s;
+  background: #FFFAF5;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none; border-color: #F2994A;
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form .btn { width: 100%; text-align: center; }
+
+/* ===== Footer ===== */
+footer {
+  background: #2D3436; color: #fff; text-align: center; padding: 2rem 1.5rem;
+}
+footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
+.social-links { display: flex; justify-content: center; gap: 1rem; }
+.social-links a {
+  width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1rem; transition: background .3s;
+}
+.social-links a:hover { background: #F2994A; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .about-grid, .events-grid, .works-grid, .support-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  section { padding: 3.5rem 1.2rem; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .about-grid, .events-grid, .works-grid, .support-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== Accessibility ===== */
+:focus-visible { outline: 3px solid #F2994A; outline-offset: 2px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
+</style>
 </head>
 <body>
-<h1>hello sunshine-at</h1>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar" role="navigation" aria-label="主要導航">
+  <a href="#hero" class="brand">
+    <span class="logo-icon" aria-hidden="true">&#9728;</span>
+    璨陽輔助科技協會
+  </a>
+  <button class="hamburger" aria-label="開啟選單" aria-expanded="false" id="menuBtn">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks" role="menubar">
+    <a href="#hero" role="menuitem">首頁</a>
+    <a href="#about" role="menuitem">關於我們</a>
+    <a href="#events" role="menuitem">近期活動</a>
+    <a href="#works" role="menuitem">我們的作品</a>
+    <a href="#support" role="menuitem">支持我們</a>
+    <a href="#contact" role="menuitem">聯絡我們</a>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="container">
+    <h1>用科技點亮每一道光</h1>
+    <p>社團法人璨陽輔助科技協會致力於研發與推廣輔助科技，讓身心障礙者擁有更自主、更有尊嚴的生活。</p>
+    <a href="#about" class="btn btn-white">了解更多</a>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">關於我們</h2>
+    <p class="section-subtitle">以科技為橋梁，為每一位需要的人搭建通往自主生活的道路</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon" aria-hidden="true">&#127775;</div>
+        <h3>我們的使命</h3>
+        <p>研發、推廣並提供輔助科技服務，協助身心障礙者及高齡長者提升生活品質，實現自立與社會參與。</p>
+      </div>
+      <div class="about-card">
+        <div class="icon" aria-hidden="true">&#128065;</div>
+        <h3>我們的願景</h3>
+        <p>打造一個無障礙的科技共融社會，讓每個人都能透過合適的輔助工具，發揮自身潛能、活出精彩人生。</p>
+      </div>
+      <div class="about-card">
+        <div class="icon" aria-hidden="true">&#129309;</div>
+        <h3>服務對象</h3>
+        <p>肢體障礙者、視覺與聽覺障礙者、認知障礙者、發展遲緩兒童、高齡長者，以及所有需要輔助科技的人。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Events ===== -->
+<section id="events" class="bg-alt">
+  <div class="container">
+    <h2 class="section-title">近期活動</h2>
+    <p class="section-subtitle">歡迎參與我們的活動，一起為無障礙生活努力</p>
+    <div class="events-grid">
+      <article class="event-card">
+        <div class="date-bar">2026 / 04 / 19（六）</div>
+        <div class="card-body">
+          <h3>輔助科技體驗工作坊</h3>
+          <p>邀請身心障礙朋友及家屬，親身體驗最新輔助科技產品，並由專業治療師提供個別化建議與諮詢服務。</p>
+        </div>
+      </article>
+      <article class="event-card">
+        <div class="date-bar">2026 / 05 / 10（日）</div>
+        <div class="card-body">
+          <h3>志工培訓研習營</h3>
+          <p>為有志參與輔助科技服務的夥伴，提供基礎訓練課程，包含輔具操作、溝通技巧與服務倫理等主題。</p>
+        </div>
+      </article>
+      <article class="event-card">
+        <div class="date-bar">2026 / 06 / 07（六）</div>
+        <div class="card-body">
+          <h3>無障礙科技論壇</h3>
+          <p>匯集學界與業界專家，探討輔助科技最新趨勢與應用案例，促進跨領域交流與合作。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Works ===== -->
+<section id="works">
+  <div class="container">
+    <h2 class="section-title">我們的作品</h2>
+    <p class="section-subtitle">從使用者需求出發，打造實用的輔助科技解決方案</p>
+    <div class="works-grid">
+      <article class="work-card">
+        <div class="thumb" aria-label="智慧溝通板示意圖">&#128172;</div>
+        <div class="card-body">
+          <h3>智慧溝通板</h3>
+          <p>結合眼控與觸控技術的 AAC 溝通輔具，支援圖像與文字雙模式，讓語言障礙者輕鬆表達心聲。</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="thumb" aria-label="居家環控系統示意圖">&#127968;</div>
+        <div class="card-body">
+          <h3>居家環境控制系統</h3>
+          <p>透過語音、按鍵或手機遙控家中電器與門窗，讓行動不便者獨立操控居住環境，提升自主生活能力。</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="thumb" aria-label="3D 列印客製輔具示意圖">&#9881;</div>
+        <div class="card-body">
+          <h3>3D 列印客製輔具</h3>
+          <p>運用 3D 掃描與列印技術，為使用者量身打造個人化輔具配件，快速、低成本、高度適配。</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="thumb" aria-label="無障礙 App 示意圖">&#128241;</div>
+        <div class="card-body">
+          <h3>無障礙生活 App</h3>
+          <p>整合無障礙地圖、輔具資源查詢與社群功能的行動應用程式，讓資訊取得更便利。</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="thumb" aria-label="教學互動系統示意圖">&#127891;</div>
+        <div class="card-body">
+          <h3>特教教學互動系統</h3>
+          <p>為特殊教育現場設計的互動教學平台，支援多元輸入方式與個別化學習路徑。</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="thumb" aria-label="電動輪椅改裝示意圖">&#9855;</div>
+        <div class="card-body">
+          <h3>電動輪椅智慧改裝</h3>
+          <p>為既有電動輪椅加裝感測器與智慧控制模組，提升安全性與操控便利性。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Support ===== -->
+<section id="support" class="bg-alt">
+  <div class="container">
+    <h2 class="section-title">支持我們</h2>
+    <p class="section-subtitle">您的每一份支持，都是推動無障礙科技的力量</p>
+    <div class="support-grid">
+      <div class="support-card">
+        <div class="icon" aria-hidden="true">&#10084;&#65039;</div>
+        <h3>捐款贊助</h3>
+        <p>您的捐款將用於輔助科技研發、弱勢服務與教育推廣，每一分錢都讓改變發生。</p>
+        <a href="#contact" class="btn btn-primary">我要捐款</a>
+      </div>
+      <div class="support-card">
+        <div class="icon" aria-hidden="true">&#9995;</div>
+        <h3>加入志工</h3>
+        <p>無論您是工程師、治療師、設計師或熱心民眾，都歡迎加入我們的志工行列。</p>
+        <a href="#contact" class="btn btn-outline">成為志工</a>
+      </div>
+      <div class="support-card">
+        <div class="icon" aria-hidden="true">&#129507;</div>
+        <h3>企業合作</h3>
+        <p>我們歡迎企業夥伴以技術支援、資源媒合或 CSR 專案等形式，攜手推動科技共融。</p>
+        <a href="#contact" class="btn btn-outline">洽談合作</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">聯絡我們</h2>
+    <p class="section-subtitle">有任何問題或建議，歡迎隨時與我們聯繫</p>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="ci-icon" aria-hidden="true">&#9993;</div>
+          <div>
+            <h4>電子信箱</h4>
+            <p>info@sunshine-at.org.tw</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon" aria-hidden="true">&#9742;</div>
+          <div>
+            <h4>聯絡電話</h4>
+            <p>(06) 123-4567</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon" aria-hidden="true">&#128205;</div>
+          <div>
+            <h4>協會地址</h4>
+            <p>700 台南市中西區大學路 1 號</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" action="#" method="post" onsubmit="handleSubmit(event)">
+        <label for="name">姓名</label>
+        <input type="text" id="name" name="name" placeholder="請輸入您的姓名" required>
+        <label for="email">電子信箱</label>
+        <input type="email" id="email" name="email" placeholder="請輸入您的信箱" required>
+        <label for="message">留言內容</label>
+        <textarea id="message" name="message" placeholder="請輸入您的留言..." required></textarea>
+        <button type="submit" class="btn btn-primary">送出留言</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <p>&copy; 2026 社團法人璨陽輔助科技協會 SunShine-AT. All rights reserved.</p>
+  <div class="social-links">
+    <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3 3 0 00-2.11-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.39.57A3 3 0 00.5 6.19 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.81 3 3 0 002.11 2.12c1.89.57 9.39.57 9.39.57s7.5 0 9.39-.57a3 3 0 002.11-2.12A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a>
+    <a href="#" aria-label="LINE"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.5c0 3.26 2.14 6.1 5.32 7.58-.07.62-.46 2.3-.53 2.65-.09.44.16.43.34.31.14-.09 2.1-1.38 2.96-1.95.61.09 1.24.14 1.91.14 5.52 0 10-3.82 10-8.5S17.52 2 12 2z"/></svg></a>
+  </div>
+</footer>
+
+<script>
+// Hamburger toggle
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+menuBtn.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', isOpen);
+});
+
+// Close mobile menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Close mobile menu on outside click
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// Simple form handler
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('感謝您的留言！我們會盡快與您聯繫。');
+  e.target.reset();
+}
+</script>
 </body>
 </html>
