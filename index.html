@@ -9,7 +9,7 @@
 
 /* ===== Reset & Base ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 18px; }
+html { scroll-behavior: smooth; font-size: 112.5%; }
 body {
   font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
   color: #2D3436;
@@ -36,7 +36,7 @@ img { max-width: 100%; display: block; }
 }
 .navbar .brand {
   display: flex; align-items: center; gap: .5rem;
-  font-size: 1.15rem; font-weight: 700; color: #F2994A;
+  font-size: 1.15rem; font-weight: 700; color: #C06D20;
   white-space: nowrap;
   transition: transform .3s ease;
 }
@@ -54,7 +54,7 @@ img { max-width: 100%; display: block; }
 .navbar .brand .logo-icon img {
   width: 100%; height: 100%; object-fit: contain;
 }
-.nav-links { display: flex; gap: 1.5rem; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
 .nav-links a {
   font-size: .9rem; font-weight: 500; color: #2D3436;
   padding: .3rem 0; position: relative; transition: color .3s;
@@ -66,7 +66,7 @@ img { max-width: 100%; display: block; }
   transition: width .35s cubic-bezier(0.22,1,0.36,1), left .35s cubic-bezier(0.22,1,0.36,1);
   border-radius: 1px;
 }
-.nav-links a:hover, .nav-links a:focus { color: #F2994A; }
+.nav-links a:hover, .nav-links a:focus { color: #C06D20; }
 .nav-links a:hover::after, .nav-links a:focus::after { width: 100%; left: 0; }
 
 /* Hamburger */
@@ -93,7 +93,7 @@ section { padding: 5rem 1.5rem; }
   text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: .6rem; color: #2D3436;
 }
 .section-subtitle {
-  text-align: center; font-size: 1rem; color: #636e72; margin-bottom: 3rem;
+  text-align: center; font-size: 1rem; color: #4a5568; margin-bottom: 3rem;
 }
 .bg-alt { background: #F7F7F7; }
 
@@ -127,12 +127,12 @@ section { padding: 5rem 1.5rem; }
   display: inline-block; padding: .75rem 2rem; border-radius: 50px; font-weight: 600;
   font-size: 1rem; cursor: pointer; transition: .3s; border: none;
 }
-.btn-white { background: #fff; color: #F2994A; }
+.btn-white { background: #fff; color: #C06D20; }
 .btn-white:hover { background: #2D3436; color: #fff; }
 .btn-primary { background: #F2994A; color: #fff; }
 .btn-primary:hover { background: #e07e2a; }
 .btn-outline {
-  background: transparent; color: #F2994A; border: 2px solid #F2994A;
+  background: transparent; color: #C06D20; border: 2px solid #F2994A;
 }
 .btn-outline:hover { background: #F2994A; color: #fff; }
 
@@ -309,7 +309,7 @@ section { padding: 5rem 1.5rem; }
 }
 .event-card .card-body { padding: 1.5rem; }
 .event-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
-.event-card p { font-size: .88rem; color: #636e72; }
+.event-card p { font-size: .88rem; color: #4a5568; }
 
 /* ===== Works ===== */
 .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -325,7 +325,7 @@ section { padding: 5rem 1.5rem; }
 }
 .work-card .card-body { padding: 1.5rem; }
 .work-card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
-.work-card p { font-size: .88rem; color: #636e72; }
+.work-card p { font-size: .88rem; color: #4a5568; }
 
 /* ===== Support ===== */
 #support .section-title {
@@ -379,8 +379,8 @@ section { padding: 5rem 1.5rem; }
   transform: translateY(-4px);
   box-shadow: 0 8px 32px rgba(242,153,74,.15), 0 4px 16px rgba(0,0,0,.06);
 }
-.support-donate h3 { font-size: 1.1rem; margin-bottom: 1rem; color: #F2994A; }
-.support-donate p { font-size: .95rem; color: #636e72; line-height: 2; }
+.support-donate h3 { font-size: 1.1rem; margin-bottom: 1rem; color: #C06D20; }
+.support-donate p { font-size: .95rem; color: #4a5568; line-height: 2; }
 
 /* ===== Contact ===== */
 #contact .section-title {
@@ -395,7 +395,7 @@ section { padding: 5rem 1.5rem; }
 }
 .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
 .contact-details h4 {
-  font-size: 1rem; margin-bottom: .2rem; color: #F2994A;
+  font-size: 1rem; margin-bottom: .2rem; color: #C06D20;
   position: relative; padding-bottom: .4rem;
 }
 .contact-details h4::after {
@@ -413,7 +413,7 @@ section { padding: 5rem 1.5rem; }
 .contact-details > div > .ci-icon img {
   width: 100%; height: 100%; object-fit: contain;
 }
-.contact-details p { font-size: .9rem; color: #636e72; line-height: 1.8; }
+.contact-details p { font-size: .9rem; color: #4a5568; line-height: 1.8; }
 .contact-form {
   background: #fff; border-radius: 16px; padding: 2rem;
   box-shadow: 0 4px 20px rgba(0,0,0,.06);
@@ -448,7 +448,7 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  html { font-size: 16px; }
+  html { font-size: 100%; }
   .hero .container { max-width: 100%; padding: 1rem; }
   .hero img { border-radius: 8px; }
   .hero h1 { font-size: 1.8rem; }
@@ -490,12 +490,25 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); border: 0;
 }
+.skip-link:focus { top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
 <body>
 
+<!-- ===== Skip Navigation ===== -->
+<a href="#main-content" class="sr-only skip-link" style="position:absolute;top:-40px;left:0;background:#F2994A;color:#fff;padding:8px 16px;z-index:9999;transition:top .3s;">跳至主要內容</a>
+
 <!-- ===== Navbar ===== -->
-<nav class="navbar" role="navigation" aria-label="主要導航">
+<nav class="navbar" aria-label="主要導航">
   <a href="#hero" class="brand">
     <span class="logo-icon"><img src="logo.avif" alt="社團法人璨陽輔助科技協會 Logo"></span>
     社團法人璨陽輔助科技協會
@@ -503,19 +516,23 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
   <button class="hamburger" aria-label="開啟選單" aria-expanded="false" id="menuBtn">
     <span></span><span></span><span></span>
   </button>
-  <div class="nav-links" id="navLinks" role="menubar">
-    <a href="#hero" role="menuitem">首頁</a>
-    <a href="#about" role="menuitem">關於我們</a>
-    <!-- <a href="#events" role="menuitem">近期活動</a> -->
-    <!-- <a href="#works" role="menuitem">我們的作品</a> -->
-    <a href="#support" role="menuitem">支持我們</a>
-    <a href="#contact" role="menuitem">聯絡我們</a>
-  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">首頁</a></li>
+    <li><a href="#about">關於我們</a></li>
+    <!-- <li><a href="#events">近期活動</a></li> -->
+    <!-- <li><a href="#works">我們的作品</a></li> -->
+    <li><a href="#support">支持我們</a></li>
+    <li><a href="#contact">聯絡我們</a></li>
+  </ul>
 </nav>
+
+<!-- ===== Main Content ===== -->
+<main id="main-content">
 
 <!-- ===== Hero ===== -->
 <section class="hero" id="hero">
   <div class="container">
+    <h1 class="sr-only">社團法人璨陽輔助科技協會</h1>
     <img src="hero.png" alt="社團法人璨陽輔助科技協會 — 科技有愛 陽光同行">
   </div>
 </section>
@@ -681,12 +698,14 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
         <div>
           <span class="ci-icon"><img src="icon-fb.png" alt="Facebook"></span>
           <h4>更多資訊</h4>
-          <p>FB 搜尋「<a href="https://www.facebook.com/people/%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E7%92%A8%E9%99%BD%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83/100064873473029/" target="_blank" rel="noopener" style="color:#F2994A; text-decoration:underline;">社團法人璨陽輔助科技協會</a>」</p>
+          <p>FB 搜尋「<a href="https://www.facebook.com/people/%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E7%92%A8%E9%99%BD%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83/100064873473029/" target="_blank" rel="noopener" style="color:#C06D20; text-decoration:underline;">社團法人璨陽輔助科技協會</a>」</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ===== Footer ===== -->
 <footer>
@@ -709,6 +728,15 @@ navLinks.querySelectorAll('a').forEach(link => {
     navLinks.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', 'false');
   });
+});
+
+// Close mobile menu on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.focus();
+  }
 });
 
 // Close mobile menu on outside click
