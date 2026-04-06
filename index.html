@@ -501,6 +501,18 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .fade-in, .about-fade {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* When section receives focus (tab navigation), make content visible */
+section:focus-within .fade-in,
+section:focus-within .about-fade,
+section:focus .fade-in,
+section:focus .about-fade {
+  opacity: 1 !important;
+  transform: none !important;
 }
 </style>
 </head>
@@ -798,8 +810,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     const target = document.querySelector(link.getAttribute('href'));
     if (target) {
+      // Reveal fade-in elements in target section
+      target.querySelectorAll('.fade-in, .about-fade').forEach(el => el.classList.add('is-visible'));
       target.focus({ preventScroll: false });
     }
+  });
+});
+
+// When sections receive focus via tab, reveal their content
+document.querySelectorAll('section[tabindex]').forEach(section => {
+  section.addEventListener('focus', () => {
+    section.querySelectorAll('.fade-in, .about-fade').forEach(el => el.classList.add('is-visible'));
   });
 });
 
