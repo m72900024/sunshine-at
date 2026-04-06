@@ -28,15 +28,28 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 2px 8px rgba(0,0,0,.08);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 2rem; height: 64px;
+  transition: background .4s ease, box-shadow .4s ease;
+}
+.navbar.scrolled {
+  background: rgba(255,250,245,.98);
+  box-shadow: 0 4px 20px rgba(242,153,74,.12), 0 2px 8px rgba(0,0,0,.06);
 }
 .navbar .brand {
   display: flex; align-items: center; gap: .5rem;
   font-size: 1.15rem; font-weight: 700; color: #F2994A;
   white-space: nowrap;
+  transition: transform .3s ease;
+}
+.navbar .brand:hover {
+  transform: scale(1.03);
 }
 .navbar .brand .logo-icon {
   width: 40px; height: 40px;
   flex-shrink: 0;
+  transition: transform .4s ease;
+}
+.navbar .brand:hover .logo-icon {
+  transform: rotate(12deg) scale(1.1);
 }
 .navbar .brand .logo-icon img {
   width: 100%; height: 100%; object-fit: contain;
@@ -47,11 +60,14 @@ img { max-width: 100%; display: block; }
   padding: .3rem 0; position: relative; transition: color .3s;
 }
 .nav-links a::after {
-  content: ''; position: absolute; left: 0; bottom: 0;
-  width: 0; height: 2px; background: #F2994A; transition: width .3s;
+  content: ''; position: absolute; left: 50%; bottom: -2px;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, #F2994A, #F2C94C);
+  transition: width .35s cubic-bezier(0.22,1,0.36,1), left .35s cubic-bezier(0.22,1,0.36,1);
+  border-radius: 1px;
 }
 .nav-links a:hover, .nav-links a:focus { color: #F2994A; }
-.nav-links a:hover::after, .nav-links a:focus::after { width: 100%; }
+.nav-links a:hover::after, .nav-links a:focus::after { width: 100%; left: 0; }
 
 /* Hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
@@ -91,7 +107,19 @@ section { padding: 5rem 1.5rem; }
   max-width: 900px; padding: 2rem;
 }
 .hero img {
-  width: 100%; height: auto; border-radius: 12px;
+  width: 100%; height: auto; border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(242,153,74,.12), 0 4px 16px rgba(0,0,0,.04);
+  transition: transform .6s cubic-bezier(0.22,1,0.36,1), box-shadow .6s ease;
+  opacity: 0;
+  animation: heroFadeIn 1s cubic-bezier(0.22,1,0.36,1) .2s forwards;
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.hero img:hover {
+  transform: scale(1.015);
+  box-shadow: 0 16px 48px rgba(242,153,74,.18), 0 6px 20px rgba(0,0,0,.06);
 }
 .hero h1 { font-size: 2.6rem; margin-bottom: 1rem; line-height: 1.3; }
 .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; opacity: .95; }
@@ -300,27 +328,91 @@ section { padding: 5rem 1.5rem; }
 .work-card p { font-size: .88rem; color: #636e72; }
 
 /* ===== Support ===== */
+#support .section-title {
+  font-family: "Noto Serif TC", serif;
+  letter-spacing: 0.08em;
+}
 .support-content { max-width: 700px; margin: 0 auto; }
-.support-banner { width: 100%; border-radius: 12px; margin-bottom: 2.5rem; }
-.support-divider { width: 60px; height: 3px; background: #F2994A; margin: 0 auto 2rem; border-radius: 2px; }
+.support-banner {
+  width: 100%; border-radius: 16px; margin-bottom: 2.5rem;
+  box-shadow: 0 12px 40px rgba(242,153,74,.12), 0 2px 12px rgba(0,0,0,.04);
+}
+.support-divider {
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, #F2994A, #F2C94C);
+  margin: 0 auto 2rem; border-radius: 2px;
+}
 .support-quote {
-  font-size: 1rem; color: #636e72; line-height: 2.2; text-align: center;
-  padding: 0 1rem; margin-bottom: 1rem;
+  font-size: 1rem; color: #3d3d3d; line-height: 2.2; text-align: center;
+  padding: 2rem 2.5rem; margin-bottom: 1rem;
+  position: relative;
+}
+.support-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.3rem;
+  left: 0.5rem;
+  font-family: "Noto Serif TC", serif;
+  font-size: 5rem;
+  color: rgba(242,153,74,.12);
+  line-height: 1;
+  pointer-events: none;
+}
+.support-quote::after {
+  content: '\201D';
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0.5rem;
+  font-family: "Noto Serif TC", serif;
+  font-size: 5rem;
+  color: rgba(242,153,74,.12);
+  line-height: 1;
+  pointer-events: none;
 }
 .support-signature { text-align: center; font-size: .95rem; color: #666; margin-bottom: 2.5rem; }
 .support-donate {
   background: #fff; border-radius: 16px; padding: 2rem 2.5rem; text-align: center;
   box-shadow: 0 4px 20px rgba(0,0,0,.06); max-width: 400px; margin: 0 auto;
+  transition: transform .35s cubic-bezier(0.22,1,0.36,1), box-shadow .35s ease;
+}
+.support-donate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(242,153,74,.15), 0 4px 16px rgba(0,0,0,.06);
 }
 .support-donate h3 { font-size: 1.1rem; margin-bottom: 1rem; color: #F2994A; }
 .support-donate p { font-size: .95rem; color: #636e72; line-height: 2; }
 
 /* ===== Contact ===== */
+#contact .section-title {
+  font-family: "Noto Serif TC", serif;
+  letter-spacing: 0.08em;
+}
 .contact-layout { display: flex; align-items: center; justify-content: center; gap: 3rem; max-width: 800px; margin: 0 auto; }
 .contact-layout .contact-image { flex-shrink: 0; }
-.contact-layout .contact-image img { width: 200px; height: 200px; object-fit: contain; }
+.contact-layout .contact-image img {
+  width: 200px; height: 200px; object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(242,153,74,.15));
+}
 .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
-.contact-details h4 { font-size: 1rem; margin-bottom: .2rem; color: #F2994A; }
+.contact-details h4 {
+  font-size: 1rem; margin-bottom: .2rem; color: #F2994A;
+  position: relative; padding-bottom: .4rem;
+}
+.contact-details h4::after {
+  content: '';
+  position: absolute; left: 0; bottom: 0;
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, #F2994A, #F2C94C);
+  border-radius: 1px;
+}
+.contact-details > div { padding-left: 1.6rem; position: relative; }
+.contact-details > div::before {
+  position: absolute; left: 0; top: 0.15rem;
+  font-size: .85rem; color: #F2994A;
+}
+.contact-details > div:nth-child(1)::before { content: '\1F4CB'; }
+.contact-details > div:nth-child(2)::before { content: '\1F3E0'; }
+.contact-details > div:nth-child(3)::before { content: '\1F310'; }
 .contact-details p { font-size: .9rem; color: #636e72; line-height: 1.8; }
 .contact-form {
   background: #fff; border-radius: 16px; padding: 2rem;
@@ -340,16 +432,19 @@ section { padding: 5rem 1.5rem; }
 
 /* ===== Footer ===== */
 footer {
-  background: #2D3436; color: #fff; text-align: center; padding: 2rem 1.5rem;
+  background: url('footer-bg.png') center/cover no-repeat;
+  color: #2D3436; text-align: center; padding: 2rem 1.5rem;
+  position: relative;
+  border-top: 3px solid #F2994A;
 }
-footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
+footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436; }
 .social-links { display: flex; justify-content: center; gap: 1rem; }
 .social-links a {
-  width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.15);
+  width: 40px; height: 40px; border-radius: 50%; background: rgba(242,153,74,.15);
   display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1rem; transition: background .3s;
+  color: #2D3436; font-size: 1rem; transition: background .3s, color .3s;
 }
-.social-links a:hover { background: #F2994A; }
+.social-links a:hover { background: #F2994A; color: #fff; }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
@@ -362,6 +457,11 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
   }
   .contact-layout { flex-direction: column; text-align: center; }
   .contact-details { align-items: center; }
+  .contact-details > div { text-align: left; }
+  .contact-details h4::after { left: 50%; transform: translateX(-50%); }
+  .support-quote::before { left: -0.2rem; font-size: 3.5rem; }
+  .support-quote::after { right: -0.2rem; font-size: 3.5rem; }
+  .support-quote { padding: 1.5rem 1rem; }
   section { padding: 3.5rem 1.2rem; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -369,6 +469,20 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ===== Global scroll fade-in ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-d1 { transition-delay: 0.1s; }
+.fade-in-d2 { transition-delay: 0.2s; }
+.fade-in-d3 { transition-delay: 0.3s; }
 
 /* ===== Accessibility ===== */
 :focus-visible { outline: 3px solid #F2994A; outline-offset: 2px; }
@@ -529,14 +643,14 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
 <!-- ===== Support ===== -->
 <section id="support" class="bg-alt">
   <div class="container">
-    <h2 class="section-title">支持我們</h2>
+    <h2 class="section-title fade-in">支持我們</h2>
     <div class="support-content">
-      <img src="support-banner.png" alt="支持璨陽" class="support-banner">
-      <div class="support-divider"></div>
-      <p class="support-quote">「Sunshine 璨陽」意旨和煦璀璨的陽光，代表著我們服務的熱忱，也象徵著團隊服務的介入，能夠為服務對象帶來正面與溫暖的影響。讓我們一起來幫助需要幫助的弱勢兒童及身障兒童，因為有你，讓這些孩童能生活得更尊嚴且自主生活。</p>
-      <p class="support-signature">理事長&ensp;林明昌&ensp;致謝</p>
-      <div class="support-divider"></div>
-      <div class="support-donate">
+      <img src="support-banner.png" alt="支持璨陽" class="support-banner fade-in fade-in-d1">
+      <div class="support-divider fade-in fade-in-d2"></div>
+      <p class="support-quote fade-in fade-in-d2">「Sunshine 璨陽」意旨和煦璀璨的陽光，代表著我們服務的熱忱，也象徵著團隊服務的介入，能夠為服務對象帶來正面與溫暖的影響。讓我們一起來幫助需要幫助的弱勢兒童及身障兒童，因為有你，讓這些孩童能生活得更尊嚴且自主生活。</p>
+      <p class="support-signature fade-in fade-in-d2">理事長&ensp;林明昌&ensp;致謝</p>
+      <div class="support-divider fade-in fade-in-d2"></div>
+      <div class="support-donate fade-in fade-in-d3">
         <h3>匯款帳號</h3>
         <p>銀行名稱：玉山銀行 桃園分行<br>銀行代號：808<br>銀行帳號：0185940028777</p>
       </div>
@@ -547,9 +661,9 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
 <!-- ===== Contact ===== -->
 <section id="contact">
   <div class="container">
-    <h2 class="section-title">聯絡我們</h2>
-    <p class="section-subtitle">社團法人中華民國璨陽輔助科技協會</p>
-    <div class="contact-layout">
+    <h2 class="section-title fade-in">聯絡我們</h2>
+    <p class="section-subtitle fade-in fade-in-d1">社團法人中華民國璨陽輔助科技協會</p>
+    <div class="contact-layout fade-in fade-in-d2">
       <div class="contact-image">
         <img src="icon-contact.png" alt="聯絡我們">
       </div>
@@ -616,6 +730,34 @@ if ('IntersectionObserver' in window) {
   aboutFadeEls.forEach(el => aboutObserver.observe(el));
 } else {
   aboutFadeEls.forEach(el => el.classList.add('is-visible'));
+}
+
+// Navbar scroll effect
+const navbar = document.querySelector('.navbar');
+let lastScrollY = 0;
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 30) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  lastScrollY = window.scrollY;
+}, { passive: true });
+
+// Global scroll-triggered fade-in (excluding .about-fade which has its own observer)
+const fadeEls = document.querySelectorAll('.fade-in');
+if ('IntersectionObserver' in window) {
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => fadeObserver.observe(el));
+} else {
+  fadeEls.forEach(el => el.classList.add('is-visible'));
 }
 
 // Simple form handler
