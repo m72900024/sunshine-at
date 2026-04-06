@@ -405,14 +405,14 @@ section { padding: 5rem 1.5rem; }
   background: linear-gradient(90deg, #F2994A, #F2C94C);
   border-radius: 1px;
 }
-.contact-details > div { padding-left: 1.6rem; position: relative; }
-.contact-details > div::before {
-  position: absolute; left: 0; top: 0.15rem;
-  font-size: .85rem; color: #F2994A;
+.contact-details > div { padding-left: 3.5rem; position: relative; }
+.contact-details > div > .ci-icon {
+  position: absolute; left: 0; top: 0;
+  width: 40px; height: 40px;
 }
-.contact-details > div:nth-child(1)::before { content: '\1F4CB'; }
-.contact-details > div:nth-child(2)::before { content: '\1F3E0'; }
-.contact-details > div:nth-child(3)::before { content: '\1F310'; }
+.contact-details > div > .ci-icon img {
+  width: 100%; height: 100%; object-fit: contain;
+}
 .contact-details p { font-size: .9rem; color: #636e72; line-height: 1.8; }
 .contact-form {
   background: #fff; border-radius: 16px; padding: 2rem;
@@ -669,14 +669,17 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
       </div>
       <div class="contact-details">
         <div>
+          <span class="ci-icon"><img src="icon-cert.png" alt="登記資訊"></span>
           <h4>登記資訊</h4>
           <p>內政部登記證號：台內團字第10900393302號<br>桃園地法院法人登記：第34冊第39頁000044號<br>統一編號：87518381</p>
         </div>
         <div>
+          <span class="ci-icon"><img src="icon-location.png" alt="會址"></span>
           <h4>會址</h4>
           <p>桃園市中壢區內定里內定二十街73巷76號</p>
         </div>
         <div>
+          <span class="ci-icon"><img src="icon-fb.png" alt="Facebook"></span>
           <h4>更多資訊</h4>
           <p>FB 搜尋「<a href="https://www.facebook.com/people/%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E7%92%A8%E9%99%BD%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83/100064873473029/" target="_blank" rel="noopener" style="color:#F2994A; text-decoration:underline;">社團法人璨陽輔助科技協會</a>」</p>
         </div>
