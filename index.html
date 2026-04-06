@@ -159,16 +159,12 @@ section { padding: 5rem 1.5rem; }
 .support-card p { font-size: .9rem; color: #636e72; margin-bottom: 1.5rem; }
 
 /* ===== Contact ===== */
-.contact-wrapper { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 600px; margin: 0 auto; }
-.contact-info { display: flex; flex-direction: column; gap: 2rem; align-items: center; }
-.contact-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .5rem; }
-.contact-item .ci-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1.2rem; flex-shrink: 0;
-}
-.contact-item h4 { font-size: 1rem; margin-bottom: .2rem; }
-.contact-item p { font-size: .9rem; color: #636e72; }
+.contact-layout { display: flex; align-items: center; justify-content: center; gap: 3rem; max-width: 800px; margin: 0 auto; }
+.contact-layout .contact-image { flex-shrink: 0; }
+.contact-layout .contact-image img { width: 200px; height: 200px; object-fit: contain; }
+.contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+.contact-details h4 { font-size: 1rem; margin-bottom: .2rem; color: #F2994A; }
+.contact-details p { font-size: .9rem; color: #636e72; line-height: 1.8; }
 .contact-form {
   background: #fff; border-radius: 16px; padding: 2rem;
   box-shadow: 0 4px 20px rgba(0,0,0,.06);
@@ -207,7 +203,8 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
   .about-grid, .events-grid, .works-grid, .support-grid {
     grid-template-columns: 1fr;
   }
-  .contact-wrapper { grid-template-columns: 1fr; }
+  .contact-layout { flex-direction: column; text-align: center; }
+  .contact-details { align-items: center; }
   section { padding: 3.5rem 1.2rem; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -367,28 +364,22 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
   <div class="container">
     <h2 class="section-title">聯絡我們</h2>
     <p class="section-subtitle">社團法人中華民國璨陽輔助科技協會</p>
-    <div class="contact-wrapper">
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="ci-icon"><img src="icon-cert.png" alt="登記資訊" style="width:48px;height:48px;object-fit:contain;"></div>
-          <div>
-            <h4>登記資訊</h4>
-            <p>內政部登記證號：台內團字第10900393302號<br>桃園地法院法人登記：第34冊第39頁000044號<br>統一編號：87518381</p>
-          </div>
+    <div class="contact-layout">
+      <div class="contact-image">
+        <img src="icon-contact.png" alt="聯絡我們">
+      </div>
+      <div class="contact-details">
+        <div>
+          <h4>登記資訊</h4>
+          <p>內政部登記證號：台內團字第10900393302號<br>桃園地法院法人登記：第34冊第39頁000044號<br>統一編號：87518381</p>
         </div>
-        <div class="contact-item">
-          <div class="ci-icon"><img src="icon-location.png" alt="會址" style="width:48px;height:48px;object-fit:contain;"></div>
-          <div>
-            <h4>會址</h4>
-            <p>桃園市中壢區內定里內定二十街73巷76號</p>
-          </div>
+        <div>
+          <h4>會址</h4>
+          <p>桃園市中壢區內定里內定二十街73巷76號</p>
         </div>
-        <div class="contact-item">
-          <div class="ci-icon"><img src="icon-fb.png" alt="Facebook" style="width:48px;height:48px;object-fit:contain;"></div>
-          <div>
-            <h4>更多資訊</h4>
-            <p>FB 搜尋「<a href="https://www.facebook.com/people/%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E7%92%A8%E9%99%BD%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83/100064873473029/" target="_blank" rel="noopener" style="color:#F2994A; text-decoration:underline;">社團法人璨陽輔助科技協會</a>」</p>
-          </div>
+        <div>
+          <h4>更多資訊</h4>
+          <p>FB 搜尋「<a href="https://www.facebook.com/people/%E7%A4%BE%E5%9C%98%E6%B3%95%E4%BA%BA%E7%92%A8%E9%99%BD%E8%BC%94%E5%8A%A9%E7%A7%91%E6%8A%80%E5%8D%94%E6%9C%83/100064873473029/" target="_blank" rel="noopener" style="color:#F2994A; text-decoration:underline;">社團法人璨陽輔助科技協會</a>」</p>
         </div>
       </div>
     </div>
