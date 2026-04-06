@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>社團法人璨陽輔助科技協會 | SunShine-AT</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
+
 /* ===== Reset & Base ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 18px; }
@@ -107,14 +109,164 @@ section { padding: 5rem 1.5rem; }
 .btn-outline:hover { background: #F2994A; color: #fff; }
 
 /* ===== About ===== */
-.about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.about-card {
-  background: #fff; border-radius: 16px; padding: 2rem; text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+#about {
+  position: relative;
+  overflow: hidden;
+  background: #FFFAF5;
 }
-.about-card .icon { font-size: 2.4rem; margin-bottom: 1rem; }
-.about-card h3 { font-size: 1.2rem; margin-bottom: .8rem; color: #F2994A; }
-.about-card p { font-size: .92rem; color: #636e72; }
+
+/* Sunshine decorative ray — subtle SVG behind content */
+.about-sunshine-deco {
+  position: absolute;
+  top: -80px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section heading */
+.about-heading {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.about-heading h2 {
+  font-family: "Noto Serif TC", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2D3436;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.8rem;
+}
+.about-heading-line {
+  width: 48px;
+  height: 3px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, #F2994A, #F2C94C);
+  border-radius: 2px;
+}
+
+/* Two-column layout */
+.about-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+/* Image side */
+.about-image-wrap {
+  flex: 0 0 44%;
+  max-width: 44%;
+  position: relative;
+}
+.about-image-frame {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(242, 153, 74, 0.12), 0 2px 12px rgba(0,0,0,0.04);
+}
+.about-image-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Orange accent bar along left edge of image */
+.about-image-frame::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 24px;
+  bottom: 24px;
+  width: 4px;
+  background: linear-gradient(180deg, #F2994A, #F2C94C);
+  border-radius: 0 2px 2px 0;
+  z-index: 2;
+}
+/* Subtle warm glow behind image */
+.about-image-wrap::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 18px;
+  border: 2px dashed rgba(242, 153, 74, 0.18);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Text side */
+.about-text {
+  flex: 1;
+  padding-top: 0.5rem;
+}
+.about-text p {
+  font-family: "Noto Serif TC", serif;
+  font-size: 0.98rem;
+  color: #3d3d3d;
+  line-height: 2.15;
+  margin-bottom: 1.6rem;
+}
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+/* Thin gradient rule between paragraphs */
+.about-text-divider {
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, #F2994A 0%, #F2C94C 100%);
+  border: none;
+  border-radius: 1px;
+  margin: 0 0 1.6rem 0;
+}
+
+/* Fade-in animation */
+.about-fade {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.about-fade.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about-fade-delay {
+  transition-delay: 0.18s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-layout {
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+  .about-image-wrap {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+  .about-heading h2 {
+    font-size: 1.6rem;
+  }
+  .about-sunshine-deco {
+    width: 260px;
+    height: 260px;
+    top: -40px;
+    right: -60px;
+  }
+  .about-text p {
+    font-size: 0.92rem;
+    line-height: 2;
+  }
+}
 
 /* ===== Events ===== */
 .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -205,7 +357,7 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
   .hero .container { max-width: 100%; padding: 1rem; }
   .hero img { border-radius: 8px; }
   .hero h1 { font-size: 1.8rem; }
-  .about-grid, .events-grid, .works-grid, .support-grid {
+  .events-grid, .works-grid, .support-grid {
     grid-template-columns: 1fr;
   }
   .contact-layout { flex-direction: column; text-align: center; }
@@ -213,7 +365,7 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
   section { padding: 3.5rem 1.2rem; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
-  .about-grid, .events-grid, .works-grid, .support-grid {
+  .events-grid, .works-grid, .support-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -256,12 +408,38 @@ footer p { font-size: .85rem; opacity: .8; margin-bottom: .8rem; }
 
 <!-- ===== About ===== -->
 <section id="about">
-  <div class="container">
-    <h2 class="section-title">關於我們</h2>
-    <div style="max-width:500px; margin:0 auto 2rem; text-align:center;">
-      <img src="about.png" alt="孩童使用輔助科技" style="width:100%; height:auto; border-radius:12px;">
+  <!-- Decorative sunshine rays -->
+  <svg class="about-sunshine-deco" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="200" cy="200" r="80" fill="#F2994A"/>
+    <g stroke="#F2C94C" stroke-width="2.5" stroke-linecap="round">
+      <line x1="200" y1="20" x2="200" y2="90"/><line x1="200" y1="310" x2="200" y2="380"/>
+      <line x1="20" y1="200" x2="90" y2="200"/><line x1="310" y1="200" x2="380" y2="200"/>
+      <line x1="72" y1="72" x2="125" y2="125"/><line x1="275" y1="275" x2="328" y2="328"/>
+      <line x1="328" y1="72" x2="275" y2="125"/><line x1="125" y1="275" x2="72" y2="328"/>
+      <line x1="200" y1="20" x2="200" y2="90"/><line x1="110" y1="38" x2="145" y2="105"/>
+      <line x1="290" y1="38" x2="255" y2="105"/><line x1="38" y1="110" x2="105" y2="145"/>
+      <line x1="362" y1="110" x2="295" y2="145"/><line x1="38" y1="290" x2="105" y2="255"/>
+      <line x1="362" y1="290" x2="295" y2="255"/><line x1="110" y1="362" x2="145" y2="295"/>
+      <line x1="290" y1="362" x2="255" y2="295"/>
+    </g>
+  </svg>
+  <div class="container about-inner">
+    <div class="about-heading about-fade">
+      <h2>關於我們</h2>
+      <div class="about-heading-line"></div>
     </div>
-    <p class="section-subtitle" style="max-width:800px; margin-left:auto; margin-right:auto; text-align:left; line-height:2;">一個由大學老師、企業、特教老師、職能治療師、物理治療師、工業設計與機械開發專業人員及家長等相關人員所組成之團隊。<br><br>市售的輔助科技設備（輔具）大多價格昂貴，使得許多家庭沒有能力負擔，讓家中的份子錯失復能以及與外界互動的機會。針對不同需求的特殊孩童、長者及身心障礙者，我們一直致力於研發與製作簡單、符合個別需求、低價的輔助科技設備與裝置，例如：各式特殊開關…等，因此也促成我們決定聚首持續發展理念。</p>
+    <div class="about-layout">
+      <div class="about-image-wrap about-fade">
+        <div class="about-image-frame">
+          <img src="about.png" alt="孩童使用輔助科技">
+        </div>
+      </div>
+      <div class="about-text about-fade about-fade-delay">
+        <p>一個由大學老師、企業、特教老師、職能治療師、物理治療師、工業設計與機械開發專業人員及家長等相關人員所組成之團隊。</p>
+        <hr class="about-text-divider">
+        <p>市售的輔助科技設備（輔具）大多價格昂貴，使得許多家庭沒有能力負擔，讓家中的份子錯失復能以及與外界互動的機會。針對不同需求的特殊孩童、長者及身心障礙者，我們一直致力於研發與製作簡單、符合個別需求、低價的輔助科技設備與裝置，例如：各式特殊開關…等，因此也促成我們決定聚首持續發展理念。</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -423,6 +601,22 @@ document.addEventListener('click', (e) => {
     menuBtn.setAttribute('aria-expanded', 'false');
   }
 });
+
+// About section scroll-triggered fade-in
+const aboutFadeEls = document.querySelectorAll('.about-fade');
+if ('IntersectionObserver' in window) {
+  const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        aboutObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  aboutFadeEls.forEach(el => aboutObserver.observe(el));
+} else {
+  aboutFadeEls.forEach(el => el.classList.add('is-visible'));
+}
 
 // Simple form handler
 function handleSubmit(e) {
