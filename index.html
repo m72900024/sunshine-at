@@ -57,7 +57,8 @@ img { max-width: 100%; display: block; }
 .nav-links { display: flex; gap: 1.5rem; list-style: none; }
 .nav-links a {
   font-size: .9rem; font-weight: 500; color: #2D3436;
-  padding: .3rem 0; position: relative; transition: color .3s;
+  padding: .6rem .5rem; min-height: 44px; display: inline-flex; align-items: center;
+  position: relative; transition: color .3s;
 }
 .nav-links a::after {
   content: ''; position: absolute; left: 50%; bottom: -2px;
@@ -70,7 +71,7 @@ img { max-width: 100%; display: block; }
 .nav-links a:hover::after, .nav-links a:focus::after { width: 100%; left: 0; }
 
 /* Hamburger */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
 .hamburger span { display: block; width: 26px; height: 3px; background: #2D3436; border-radius: 2px; transition: .3s; }
 
 /* Mobile nav */
@@ -124,8 +125,9 @@ section { padding: 5rem 1.5rem; }
 .hero h1 { font-size: 2.6rem; margin-bottom: 1rem; line-height: 1.3; }
 .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; opacity: .95; }
 .btn {
-  display: inline-block; padding: .75rem 2rem; border-radius: 50px; font-weight: 600;
-  font-size: 1rem; cursor: pointer; transition: .3s; border: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .75rem 2rem; border-radius: 50px; font-weight: 600;
+  font-size: 1rem; cursor: pointer; transition: .3s; border: none; min-height: 44px;
 }
 .btn-white { background: #fff; color: #C06D20; }
 .btn-white:hover { background: #2D3436; color: #fff; }
@@ -485,7 +487,7 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
 .fade-in-d3 { transition-delay: 0.3s; }
 
 /* ===== Accessibility ===== */
-:focus-visible { outline: 3px solid #F2994A; outline-offset: 2px; }
+:focus-visible { outline: 3px solid #2D3436; outline-offset: 2px; }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); border: 0;
@@ -527,18 +529,18 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
 </nav>
 
 <!-- ===== Main Content ===== -->
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
 <!-- ===== Hero ===== -->
-<section class="hero" id="hero">
+<section class="hero" id="hero" tabindex="-1">
   <div class="container">
     <h1 class="sr-only">社團法人璨陽輔助科技協會</h1>
-    <img src="hero.png" alt="社團法人璨陽輔助科技協會 — 科技有愛 陽光同行">
+    <img src="hero.png" alt="水彩風插圖，畫面中包含文字「社團法人璨陽輔助科技協會」與標語「科技有愛 陽光同行」">
   </div>
 </section>
 
 <!-- ===== About ===== -->
-<section id="about">
+<section id="about" tabindex="-1">
   <!-- Decorative sunshine rays -->
   <svg class="about-sunshine-deco" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <circle cx="200" cy="200" r="80" fill="#F2994A"/>
@@ -562,7 +564,7 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
     <div class="about-layout">
       <div class="about-image-wrap about-fade">
         <div class="about-image-frame">
-          <img src="about.png" alt="孩童使用輔助科技">
+          <img src="about.png" alt="孩童在志工協助下使用輔助科技設備進行互動學習">
         </div>
       </div>
       <div class="about-text about-fade about-fade-delay">
@@ -658,11 +660,11 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
 </section>
 
 <!-- ===== Support ===== -->
-<section id="support" class="bg-alt">
+<section id="support" class="bg-alt" tabindex="-1">
   <div class="container">
     <h2 class="section-title fade-in">支持我們</h2>
     <div class="support-content">
-      <img src="support-banner.png" alt="支持璨陽" class="support-banner fade-in fade-in-d1">
+      <img src="support-banner.png" alt="璨陽協會團隊成員與服務對象合影，展現溫暖互助的服務精神" class="support-banner fade-in fade-in-d1">
       <div class="support-divider fade-in fade-in-d2"></div>
       <p class="support-quote fade-in fade-in-d2">「Sunshine 璨陽」意旨和煦璀璨的陽光，代表著我們服務的熱忱，也象徵著團隊服務的介入，能夠為服務對象帶來正面與溫暖的影響。讓我們一起來幫助需要幫助的弱勢兒童及身障兒童，因為有你，讓這些孩童能生活得更尊嚴且自主生活。</p>
       <p class="support-signature fade-in fade-in-d2">理事長&ensp;林明昌&ensp;致謝</p>
@@ -676,13 +678,13 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
 </section>
 
 <!-- ===== Contact ===== -->
-<section id="contact">
+<section id="contact" tabindex="-1">
   <div class="container">
     <h2 class="section-title fade-in">聯絡我們</h2>
     <p class="section-subtitle fade-in fade-in-d1">社團法人中華民國璨陽輔助科技協會</p>
     <div class="contact-layout fade-in fade-in-d2">
       <div class="contact-image">
-        <img src="icon-contact.png" alt="聯絡我們">
+        <img src="icon-contact.png" alt="信件與電話圖示，象徵聯絡溝通">
       </div>
       <div class="contact-details">
         <div>
@@ -790,6 +792,16 @@ if ('IntersectionObserver' in window) {
 } else {
   fadeEls.forEach(el => el.classList.add('is-visible'));
 }
+
+// Anchor link focus management for accessibility
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.focus({ preventScroll: false });
+    }
+  });
+});
 
 // Simple form handler
 function handleSubmit(e) {
