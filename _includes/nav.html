@@ -1,0 +1,16 @@
+<nav class="navbar" aria-label="主要導航">
+  <a href="{{ site.baseurl }}/" class="brand">
+    <span class="logo-icon"><img src="{{ site.baseurl }}/assets/images/logo.avif" alt="社團法人璨陽輔助科技協會 Logo"></span>
+    社團法人璨陽輔助科技協會
+  </a>
+  <button class="hamburger" aria-label="開啟選單" aria-expanded="false" id="menuBtn">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="{{ site.baseurl }}/" {% if page.url == '/' %}class="active"{% endif %}>首頁</a></li>
+    <li><a href="{{ site.baseurl }}/about.html" {% if page.url == '/about.html' %}class="active"{% endif %}>關於我們</a></li>
+    <li><a href="{{ site.baseurl }}/works.html" {% if page.url == '/works.html' or page.url contains '/works/' %}class="active"{% endif %}>我們的作品</a></li>
+    <li><a href="{{ site.baseurl }}/donate.html" {% if page.url == '/donate.html' %}class="active"{% endif %}>支持我們</a></li>
+    <li><a href="{{ site.baseurl }}/contact.html" {% if page.url == '/contact.html' %}class="active"{% endif %}>聯絡我們</a></li>
+  </ul>
+</nav>
