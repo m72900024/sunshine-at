@@ -253,13 +253,14 @@ section { padding: 5rem 1.5rem; }
   margin: 0 0 1.6rem 0;
 }
 
-/* Fade-in animation */
-.about-fade {
+/* Fade-in animation (progressive enhancement: visible by default, hidden only when JS ready) */
+.about-fade { opacity: 1; transform: none; }
+html.js-ready .about-fade {
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.about-fade.is-visible {
+html.js-ready .about-fade.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -458,13 +459,14 @@ footer p { font-size: .85rem; opacity: .75; margin-bottom: .8rem; color: #2D3436
   }
 }
 
-/* ===== Global scroll fade-in ===== */
-.fade-in {
+/* ===== Global scroll fade-in (progressive enhancement) ===== */
+.fade-in { opacity: 1; transform: none; }
+html.js-ready .fade-in {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
 }
-.fade-in.is-visible {
+html.js-ready .fade-in.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
