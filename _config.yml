@@ -1,7 +1,7 @@
 title: 社團法人璨陽輔助科技協會
 description: 研發低價、符合需求的輔助科技設備，服務身心障礙者、長者與特殊孩童
-url: https://m72900024.github.io
-baseurl: /sunshine-at
+url: https://sunshine-at.org
+baseurl: ""
 lang: zh-Hant
 plugins:
   - jekyll-sitemap
