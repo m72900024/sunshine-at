@@ -36,22 +36,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// About section scroll-triggered fade-in
-const aboutFadeEls = document.querySelectorAll('.about-fade');
-if ('IntersectionObserver' in window) {
-  const aboutObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        aboutObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  aboutFadeEls.forEach(el => aboutObserver.observe(el));
-} else {
-  aboutFadeEls.forEach(el => el.classList.add('is-visible'));
-}
-
 // Navbar scroll effect
 const navbar = document.querySelector('.navbar');
 if (navbar) {
@@ -64,37 +48,12 @@ if (navbar) {
   }, { passive: true });
 }
 
-// Global scroll-triggered fade-in (excluding .about-fade which has its own observer)
-const fadeEls = document.querySelectorAll('.fade-in');
-if ('IntersectionObserver' in window) {
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  fadeEls.forEach(el => fadeObserver.observe(el));
-} else {
-  fadeEls.forEach(el => el.classList.add('is-visible'));
-}
-
 // Anchor link focus management for accessibility
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     const target = document.querySelector(link.getAttribute('href'));
     if (target) {
-      // Reveal fade-in elements in target section
-      target.querySelectorAll('.fade-in, .about-fade').forEach(el => el.classList.add('is-visible'));
       target.focus({ preventScroll: false });
     }
-  });
-});
-
-// When sections receive focus via tab, reveal their content
-document.querySelectorAll('section[tabindex]').forEach(section => {
-  section.addEventListener('focus', () => {
-    section.querySelectorAll('.fade-in, .about-fade').forEach(el => el.classList.add('is-visible'));
   });
 });
